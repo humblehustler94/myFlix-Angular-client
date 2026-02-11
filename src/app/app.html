@@ -1,10 +1,14 @@
-
-
-
 <div style="padding: 20px;">
   <h1>Welcome to myFlix!</h1>
-  <button mat-raised-button color="primary">
-    Material Button Test
+  
+  <!-- Sign Up Button -->
+  <button mat-raised-button color="primary" (click)="openUserRegistrationDialog()">
+    Sign Up
+  </button>
+
+  <!-- Login Button (Updated with click event) -->
+  <button mat-raised-button color="accent" (click)="openUserLoginDialog()" style="margin-left: 10px;">
+    Login
   </button>
 </div>
 
