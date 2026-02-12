@@ -11,13 +11,14 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog'; // Added 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 
-// --- 1. IMPORT YOUR NEW COMPONENT ---
+// --- IMPORT YOUR NEW COMPONENT ---
 // --- NEW: impoprt registration component ---
 // --- FIX: Removed '.component' from the end of the path ---
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form';
 // --- NEW: import login component ---
 import { UserLoginFormComponent } from './user-login-form/user-login-form';
-
+// --- NEW: import movie card component ---
+import { MovieCardComponent } from './movie-card/movie-card';
 
 
 @Component({
@@ -33,8 +34,11 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form';
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
-    // --- 2. ADD THE COMPONENT TO IMPORTS ---
-    //UserRegistrationFormComponent 
+    // --- ADD THE COMPONENT TO IMPORTS ---
+    //UserRegistrationFormComponent, // (Uncomment when ready)
+    //UserLoginFormComponent, // (Uncomment when ready)
+    //MovieCardComponent,
+
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
@@ -42,7 +46,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form';
 export class App {
   protected readonly title = signal('myFlix-Angular-client');
 
-  
+
   constructor(public dialog: MatDialog) { }
 
   // --- FUNCTION TO OPEN THE REGISTRATION DIALOG ---
@@ -56,6 +60,13 @@ export class App {
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'
+    });
+  }
+
+  // --- FUNCTION TO OPEN MOVIE CARD DIALOG ---
+  openMoviesDialog(): void {
+    this.dialog.open(MovieCardComponent, {
+      width: '500px'
     });
   }
 }

@@ -1,0 +1,21 @@
+<!-- We wrap everything in mat-dialog-content to make the whole list scrollable -->
+<mat-dialog-content>
+  
+  <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    
+    <!-- The loop happens here -->
+    <mat-card *ngFor="let movie of movies; let i=index;" style="margin-bottom: 20px; width: 100%;">
+      <mat-card-header>
+        <mat-card-title>{{movie.Title}}</mat-card-title>
+      </mat-card-header>
+      
+      <!-- We use a standard div for the image container -->
+      <div style="padding: 16px;">
+        <img [src]="movie.ImagePath" [alt]="movie.Title" style="width: 100%; height: auto;" />
+      </div>
+      
+    </mat-card>
+
+  </div>
+
+</mat-dialog-content>
