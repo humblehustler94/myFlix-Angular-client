@@ -1,3 +1,14 @@
+<!-- Navigation / Header Area -->
+<div style="display: flex; justify-content: flex-end; padding: 20px; gap: 10px;">
+    <button mat-raised-button color="primary" (click)="router.navigate(['profile'])">
+        User Profile
+    </button>
+    <button mat-raised-button color="warn" (click)="logout()">
+        Logout
+    </button>
+</div>
+
+<!-- Movie List Container -->
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
     
     <mat-card *ngFor="let movie of movies" style="width: 280px; margin-bottom: 20px;">
@@ -12,23 +23,16 @@
              style="width: 100%; height: auto; object-fit: cover;"/>
              
         <mat-card-actions>
-            <!-- CHANGE 1: Added (click) to open Genre -->
             <button mat-button color="primary" (click)="openGenre(movie)">
                 Genre
             </button>
-
-            <!-- CHANGE 2: Added (click) to open Director -->
             <button mat-button color="primary" (click)="openDirector(movie)">
                 Director
             </button>
-
-            <!-- CHANGE 3: Added (click) to open Synopsis -->
             <button mat-button color="primary" (click)="openSynopsis(movie)">
                 Synopsis
             </button>
             
-            <!-- CHANGE 4: Added (click) to add to Favorites -->
-            <!-- We pass movie._id because the API needs the ID, not the whole movie object -->
             <button mat-icon-button (click)="addFavorite(movie._id)" color="warn">
                 <mat-icon>favorite_border</mat-icon>
             </button>

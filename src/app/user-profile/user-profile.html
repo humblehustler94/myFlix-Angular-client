@@ -1,0 +1,78 @@
+<div style="display: flex; flex-direction: column; align-items: center; padding: 20px; gap: 30px;">
+  
+  <!-- 1. USER PROFILE FORM -->
+  <mat-card style="width: 500px;">
+    <mat-card-header>
+      <mat-card-title>User Profile</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="padding-top: 20px;">
+      <form>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Username</mat-label>
+          <input matInput [(ngModel)]="userData.Username" name="Username" type="text">
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="userData.Email" name="Email" type="email">
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+          <mat-label>Birthday</mat-label>
+          <input matInput [(ngModel)]="userData.Birthday" name="Birthday" type="text"> 
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+          <mat-label>New Password</mat-label>
+          <input matInput [(ngModel)]="userData.Password" name="Password" type="password" placeholder="Leave blank to keep current">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <!-- UPDATED ACTIONS SECTION -->
+    <mat-card-actions align="end" style="padding-bottom: 20px; padding-right: 15px;">
+      <!-- New Delete Button (Pushed to the left by margin-right: auto) -->
+      <button mat-button color="warn" (click)="deleteAccount()" style="margin-right: auto;">
+        Delete Account
+      </button>
+      
+      <button mat-button (click)="router.navigate(['movies'])">
+        Back to Movies
+      </button>
+      
+      <button mat-raised-button color="primary" (click)="updateUser()">
+        Update Profile
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- 2. FAVORITE MOVIES SECTION -->
+  <div style="width: 100%; max-width: 1000px;">
+    <h2>Favorite Movies</h2>
+    <div *ngIf="favoriteMovies.length === 0">
+      <p>You have no favorite movies yet.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+      <mat-card *ngFor="let movie of favoriteMovies" style="width: 200px; margin-bottom: 20px;">
+        <img [src]="movie.ImagePath" [alt]="movie.Title"
+             onerror="this.src='https://placehold.co/600x400?text=No+Image'" 
+             style="width: 100%; height: 250px; object-fit: cover;"/>
+
+        <mat-card-content style="padding: 10px;">
+          <h3 style="font-size: 16px; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            {{movie.Title}}
+          </h3>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+           <button mat-icon-button color="warn" (click)="removeFromFavorites(movie._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

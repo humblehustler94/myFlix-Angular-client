@@ -2,12 +2,14 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; // <--- ADDED import ChangeDetectorRef
 import { CommonModule } from '@angular/common'; // <--- CRITICAL FOR *ngFor
 import { FetchApiDataService } from '../fetch-api-data';
+// --- CHANGE 1: Import Router ---
+import { Router } from '@angular/router';
 
 // --- Material Design Imports ---
 import { MatCardModule } from '@angular/material/card'; // <--- CRITICAL FOR <mat-card>
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog ,MatDialogModule } from '@angular/material/dialog'; // Imported MatDialog service
+import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // Imported MatDialog service
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; // Imported SnackBar
 
 
@@ -34,6 +36,8 @@ export class MovieCardComponent implements OnInit {
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    // --- CHANGE 2:  Inject Router (Must be 'public' to use in HTML) ---
+    public router: Router,
     private detector: ChangeDetectorRef, // <--- Inject it here
     public dialog: MatDialog, // Inject Dialog Service
     public snackBar: MatSnackBar // Inject SnackBar Service
@@ -51,6 +55,12 @@ export class MovieCardComponent implements OnInit {
       // <--- ADD THIS LINE: This forces the view to update with the new data
       this.detector.detectChanges();
     });
+  }
+
+  // --- CHANGE 3: Add Logout Function ---
+  logout(): void {
+    this.router.navigate(['welcome']);
+    localStorage.clear();
   }
 
   // --- 1. OPEN GENRE DIALOG ---
@@ -73,7 +83,7 @@ export class MovieCardComponent implements OnInit {
       },
       width: '400px'
     });
-  } 
+  }
 
   // --- 3. OPEN SYNOPSIS DIALOG ---
   openSynopsis(movie: any): void {
@@ -91,7 +101,13 @@ export class MovieCardComponent implements OnInit {
     this.fetchApiData.addFavoriteMovie(id).subscribe({
       next: (result) => {
         console.log(result);
-        this.snackBar.open('Movie added to favorite.', 'OK', {
+
+        // --- FIX: Update LocalStorage ---
+        // The API returns the updated user object (including the new FavoriteMovies list).
+        // We must save this to localStorage so the Profile page can see it.
+        localStorage.setItem('user', JSON.stringify(result));
+
+        this.snackBar.open('Movie added to favorites.', 'OK', {
           duration: 2000,
         });
       },
