@@ -1,0 +1,11 @@
+/* Ensures images fit inside the card */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Adds some space between cards */
+mat-card {
+    margin-bottom: 15px;
+}

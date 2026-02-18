@@ -1,0 +1,41 @@
+<!-- Navigation / Header Area -->
+<div style="display: flex; justify-content: flex-end; padding: 20px; gap: 10px;">
+    <button mat-raised-button color="primary" (click)="router.navigate(['profile'])">
+        User Profile
+    </button>
+    <button mat-raised-button color="warn" (click)="logout()">
+        Logout
+    </button>
+</div>
+
+<!-- Movie List Container -->
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+    
+    <mat-card *ngFor="let movie of movies" style="width: 280px; margin-bottom: 20px;">
+        <mat-card-header>
+            <mat-card-title>{{movie.Title}}</mat-card-title>
+            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <!-- Image with fallback -->
+        <img [src]="movie.ImagePath" [alt]="movie.Title"
+             onerror="this.src='https://placehold.co/600x400?text=No+Image'" 
+             style="width: 100%; height: auto; object-fit: cover;"/>
+             
+        <mat-card-actions>
+            <button mat-button color="primary" (click)="openGenre(movie)">
+                Genre
+            </button>
+            <button mat-button color="primary" (click)="openDirector(movie)">
+                Director
+            </button>
+            <button mat-button color="primary" (click)="openSynopsis(movie)">
+                Synopsis
+            </button>
+            
+            <button mat-icon-button (click)="addFavorite(movie._id)" color="warn">
+                <mat-icon>favorite_border</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

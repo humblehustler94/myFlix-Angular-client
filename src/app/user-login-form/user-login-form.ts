@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { FetchApiDataService } from '../fetch-api-data';
+// --- NEW: Import Router ---
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login-form',
@@ -17,31 +19,36 @@ import { FetchApiDataService } from '../fetch-api-data';
   styleUrl: './user-login-form.scss'
 })
 export class UserLoginFormComponent implements OnInit {
-  @Input() loginData = { Username: '', Password: '' };
+  // --- FIX: Renamed 'loginData' to 'userData' to match the logic below
+  @Input() userData = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router // <--- Inject Router
   ) { }
 
   ngOnInit(): void { }
 
-  loginUser(): void {
-    this.fetchApiData.userLogin(this.loginData).subscribe((result: any) => {
-      // Logic for a successful user login
-      localStorage.setItem('user', result.user.Username);
-      localStorage.setItem('token', result.token);
-      
-      this.dialogRef.close(); // Close the modal on success
-      this.snackBar.open('Logged in successfully!', 'OK', {
-        duration: 2000
-      });
-      // Redirect to movies view (to be implemented later)
-    }, (result: any) => {
-      this.snackBar.open(result, 'OK', {
-        duration: 2000
-      });
+    loginUser(): void {
+      // Now 'this.userData' matches the variable at the top
+    this.fetchApiData.userLogin(this.userData).subscribe({
+      next: (result) => {
+        // Logic for successful login
+        localStorage.setItem('user', JSON.stringify(result.user));
+        localStorage.setItem('token', result.token);
+        
+        this.dialogRef.close();
+        this.snackBar.open('User login successful', 'OK', { duration: 2000 });
+        
+        this.router.navigate(['movies']); // <--- Add this line!
+      },
+      error: (result) => {
+        this.snackBar.open('User login failed', 'OK', { duration: 2000 });
+      }
     });
   }
 }
+
+

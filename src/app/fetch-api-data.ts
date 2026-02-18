@@ -83,7 +83,7 @@ export class FetchApiDataService {
   }
 
   // 7. Get user
-  getUser(): Observable<any> {
+  getUser(username: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + user.Username, {
@@ -146,9 +146,10 @@ export class FetchApiDataService {
     return this.http.delete(apiUrl + 'users/' + user.Username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
-      })
+      }),
+      responseType: 'text' // < --- THIS IS THE FIX. it tells Angular the response is text, not JSON
     }).pipe(
-      map(this.extractResponseData),
+      //map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
