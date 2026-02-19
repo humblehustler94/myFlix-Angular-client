@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "name": "myFlix Angular Client Documentation",
+  "includeVersion": true,
+  "exclude": ["**/*.spec.ts", "node_modules/**"],
+  "hideGenerator": true,
+  "tsconfig": "./tsconfig.app.json"
+}
