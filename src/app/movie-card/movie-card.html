@@ -33,8 +33,11 @@
                 Synopsis
             </button>
             
-            <button mat-icon-button (click)="addFavorite(movie._id)" color="warn">
-                <mat-icon>favorite_border</mat-icon>
+            <!-- FIXED HEART BUTTON LOGIC -->
+            <button mat-icon-button (click)="isFavorite(movie._id) ? removeFavorite(movie._id) : addFavorite(movie._id)">
+                <mat-icon color="warn">
+                    {{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}
+                </mat-icon>
             </button>
         </mat-card-actions>
     </mat-card>
