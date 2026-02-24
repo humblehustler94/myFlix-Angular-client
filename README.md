@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![myFlix Logo]() <!-- TODO: Add project logo -->
+![myFlix Logo](docs/assets/img/myFlix-logo.png) <!-- TODO: Add project logo -->
 
 [![GitHub stars](https://img.shields.io/github/stars/humblehustler94/myFlix-Angular-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-Angular-client/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/humblehustler94/myFlix-Angular-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-Angular-client/network)
@@ -33,9 +33,14 @@ This repository hosts the client-side application for myFlix, a comprehensive mo
 
 ## 🖥️ Screenshots
 
-![Screenshot 1](path-to-screenshot) <!-- TODO: Add actual screenshots of the application -->
-![Screenshot 2](path-to-screenshot) <!-- TODO: Add mobile screenshots -->
+![Screenshot 1 - Welcome Screen](docs/assets/img/20%20-%20welcome%20page.png) <!-- TODO: Add actual screenshots of the application -->
+![Screenshot 2 - Main Dashboard](docs/assets/img/24%20-%20all%20movie%20display%20with%20favorite%20movie%20heart%20filled%20in.png) <!-- TODO: Add mobile screenshots -->
 
+![Screenshot 3 - Login Form](docs/assets/img/21%20-%20login%20form.png)
+
+![Screenshot 4 - Signup Form](docs/assets/img/22%20-%20sign%20up%20form.png)
+
+![Screenshot 5 - User Profile](docs/assets/img/23%20-%20user%20profile%20section%20with%20favorite%20movies.png)
 ## 🛠️ Tech Stack
 
 **Frontend:**
