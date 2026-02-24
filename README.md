@@ -234,8 +234,9 @@ This project is licensed under the [LICENSE_NAME](LICENSE) - see the LICENSE fil
 
 ## 📞 Support & Contact
 
--   🐛 Issues: [GitHub Issues](https://github.com/humblehustler94/myFlix-Angular-client/issues)
--   📧 Contact the author: [humblehustler94](https://github.com/humblehustler94)
+-  🐛 Issues: [GitHub Issues](https://github.com/humblehustler94/myFlix-client/issues)
+-  👤 Author: [humblehustler94](https://github.com/humblehustler94)
+-  📧 Email: [flores.itzel94@gmail.com]
 
 ---
 
